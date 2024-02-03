@@ -1,46 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_iterative_factorial.c                           :+:      :+:    :+:   */
+/*   ft_iterative_power.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kristof <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/31 09:33:27 by kristof           #+#    #+#             */
-/*   Updated: 2024/02/03 12:54:51 by kristof          ###   ########.fr       */
+/*   Created: 2024/02/03 12:56:49 by kristof           #+#    #+#             */
+/*   Updated: 2024/02/03 13:13:28 by kristof          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdlib.h>
+
 #include <stdio.h>
+#include <stdlib.h>
 
-int		ft_iterative_factorial(int nb)
+int		ft_iterative_power(int nb, int power)
 {
-		int		i;
-
-		i = 1;
-		if (nb < 0)
+		int		result;
+		
+		result = nb;
+		if (power < 0)
 				return (0);
-		else if (nb <= 1)
-				return (i);
-		while (nb > 0)
+		if (power == 0)
+				return (1);
+		while (power > 1)
 		{
-				i *= nb;
-				nb--;
+				result *= nb;
+				power--;
 		}
-		return (i);
+		return (result);
 }
 
 int		main(int argc, char *argv[])
 {
-		if (argc != 2)
+		if (argc != 3)
 		{
-				printf("usage %s <number>\n", argv[0]);
+				printf("./test <number> <power> ");
 				return (1);
 		}
-		int		result;
-		int		nb = atoi(argv[1]);
-		result = ft_iterative_factorial(nb);
-		printf("factorial of %d is %d\n", nb, result);
-		
+		int		n = atoi(argv[1]);
+		int		p = atoi(argv[2]);
+		int		result = ft_iterative_power(n, p);
+		printf("number: %d to %d -th power is %d\n", n, p, result);
 		return (0);
 }
-
